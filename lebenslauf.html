@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Резюме | Василь Пейтейчук</title>
+<link rel="icon" href="logotype/logotype.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Georgia,'Times New Roman',Times,serif}
+/* Скроллбар */
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-thumb{background-color:#777;transition:background-color .2s ease;}
+::-webkit-scrollbar-thumb:hover{background-color:#555;}
+::-webkit-scrollbar-thumb:active{background-color:#444;}
+::-webkit-scrollbar-track{background-color:#ededed;}
+html{scroll-behavior:smooth}
+body{background:#fcfcfc;color:#000;user-select:none}
+a{text-decoration:none;color:inherit}
+:root{--primary-color:#002c7e;--bg-color:#fcfcfc;--border-color:#e5e5e5}
+#security-screen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:15px;background:#fcfcfc;overflow-y:auto}
+.security-box{width:100%;max-width:500px;padding:25px 26px 20px;background:#fff;border:1px solid #e5e5e5;box-shadow:0 15px 50px rgba(0,0,0,.08)}
+.security-logo{display:block;width:auto;max-width:145px;height:45px;object-fit:contain;margin:0 auto 15px}
+.security-icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;background:#f2f5fa;color:var(--primary-color);font-size:21px}
+.security-kicker{display:block;margin-bottom:5px;font-size:12px;text-align:center;color:var(--primary-color)}
+.security-box h1{margin-bottom:7px;font-size:25px;line-height:1.25;text-align:center}
+.security-description{margin-bottom:14px;font-size:14px;line-height:1.5;color:#555;text-align:center}
+.security-helper{display:flex;align-items:flex-start;gap:10px;margin-bottom:13px;padding:10px 12px;background:#f6f8fb;border-left:3px solid var(--primary-color)}
+.security-helper-icon{flex:0 0 auto;width:27px;height:27px;display:flex;align-items:center;justify-content:center;background:var(--primary-color);color:#fff;border-radius:50%;font-size:13px}
+.security-helper-content{flex:1;min-width:0}
+.security-helper-title{display:block;margin-bottom:2px;color:var(--primary-color);font-size:13px;font-weight:700}
+.security-helper-text{display:block;color:#444;font-size:13px;line-height:1.45}
+.security-task{padding:15px;background:#fafafa;border:1px solid #e5e5e5}
+.security-question{margin-bottom:11px;font-size:14px;line-height:1.45;font-weight:600;color:#222}
+.security-items{display:flex;flex-wrap:wrap;gap:7px}
+.security-item{min-width:44px;height:42px;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #d7d7d7;background:#fff;color:#222;font-size:15px;font-weight:700;cursor:pointer;touch-action:manipulation;transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease}
+.security-item:hover{border-color:var(--primary-color);color:var(--primary-color);transform:translateY(-1px)}
+.security-item.selected{background:var(--primary-color);border-color:var(--primary-color);color:#fff}
+.security-answer{display:none;flex-wrap:wrap;gap:6px;margin-top:10px}
+.security-answer.has-items{display:flex}
+.security-answer-item{height:30px;padding:0 9px;display:inline-flex;align-items:center;border:1px solid #d9dfe8;background:#eef2f8;color:#222;font-family:inherit;font-size:13px;cursor:pointer}
+.security-answer-item:hover{border-color:var(--primary-color);color:var(--primary-color)}
+.security-actions{display:flex;gap:8px;margin-top:12px}
+.security-button{height:42px;padding:0 16px;border:1px solid var(--primary-color);background:var(--primary-color);color:#fff;font-family:inherit;font-size:13px;cursor:pointer;transition:opacity .2s ease,transform .2s ease}
+.security-button:hover{opacity:.9;transform:translateY(-1px)}
+.security-button.secondary{background:#fff;color:var(--primary-color)}
+.security-status{display:none;margin-top:9px;font-size:12px;line-height:1.4}
+.security-status.visible{display:block}
+.security-status.error{color:#9b1c1c}
+.security-status.success{color:#176b38}
+.security-progress{display:none;height:3px;margin-top:10px;background:#eee;overflow:hidden}
+.security-progress.visible{display:block}
+.security-progress span{display:block;width:0;height:100%;background:var(--primary-color);transition:width .25s ease}
+.security-home{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid #eee;color:#555;font-size:14px;transition:color .2s ease}
+.security-home:hover{color:var(--primary-color)}
+.security-home img{display:block;width:55px;height:55px;object-fit:contain}
+.security-honeypot{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+#resume-root{display:none}
+.site-header{position:fixed;top:0;left:0;width:100%;height:82px;background:#fff;border-bottom:1px solid #e5e5e5;z-index:1000}
+.navbar{width:100%;height:82px;padding:0 30px;display:flex;align-items:center;justify-content:space-between}
+.logotype{display:flex;align-items:center;justify-content:flex-start;height:100%}
+.logotype img{display:block;width:auto;height:40px;max-width:180px;object-fit:contain;transition:opacity .25s ease,transform .25s ease}
+.logotype:hover img{opacity:.75;transform:translateY(-1px)}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#333;transition:color .25s ease}
+.back-link i{color:var(--primary-color)}
+.back-link:hover{color:var(--primary-color)}
+.resume-section{width:100%;background:var(--bg-color)}
+.resume-container{width:100%;max-width:1200px;margin:0 auto;padding:140px 30px 80px}
+.resume-heading{width:100%;max-width:800px;margin:0 0 60px}
+.resume-kicker{display:block;margin:0 0 5px;font-size:16px;line-height:1.3;font-weight:400;color:var(--primary-color)}
+.resume-heading h2{margin:0 0 12px;font-size:32px;line-height:1.25;font-weight:700;color:#000}
+.resume-heading p{margin:0;font-size:15px;line-height:1.6;color:#555}
+.resume-content{display:grid;grid-template-columns:280px minmax(0,1fr);gap:70px;align-items:start}
+.resume-profile{position:sticky;top:110px;opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.resume-photo{width:100%;aspect-ratio:4/5;overflow:hidden;background:#f1f1f1;margin-bottom:22px}
+.resume-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;-webkit-user-drag:none}
+.resume-profile-name{padding-bottom:18px;border-bottom:1px solid var(--primary-color)}
+.resume-profile-name h3{margin:0 0 5px;font-size:22px;line-height:1.3;font-weight:700;color:#000}
+.resume-location{display:flex;flex-direction:column;gap:5px}
+.resume-location span{font-size:14px;line-height:1.5;color:#555}
+.resume-location strong{font-weight:600;color:#333}
+.resume-contact{padding-top:18px}
+.resume-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:13px;font-size:13px;line-height:1.5;color:#333}
+.resume-contact-item i{width:16px;flex:0 0 16px;padding-top:2px;color:var(--primary-color);text-align:center}
+.resume-contact-item a{color:#333;text-decoration:none;transition:color .25s ease}
+.resume-contact-item a:hover{color:var(--primary-color)}
+.resume-main{width:100%}
+.resume-block{margin:0 0 48px;opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.resume-block:last-child{margin-bottom:0}
+.resume-block.resume-visible,.resume-profile.resume-visible{opacity:1;transform:translateY(0)}
+.resume-block-title{display:flex;align-items:center;gap:16px;margin:0 0 25px}
+.resume-line{display:block;width:55px;height:3px;flex:0 0 55px;background:var(--primary-color)}
+.resume-block-title h3{margin:0;font-size:23px;line-height:1.3;font-weight:700;color:var(--primary-color)}
+.resume-item{display:grid;grid-template-columns:145px minmax(0,1fr);gap:25px;padding:0 0 22px;margin:0 0 22px;border-bottom:1px solid var(--border-color)}
+.resume-item:last-child{margin-bottom:0}
+.resume-date{font-size:14px;line-height:1.5;font-weight:600;color:#333}
+.resume-description{display:flex;flex-direction:column;gap:5px;font-size:15px;line-height:1.55}
+.resume-description strong{font-weight:700;color:#000}
+.resume-description span{color:#555}
+.resume-skills{display:flex;flex-direction:column;gap:0}
+.resume-skill{display:grid;grid-template-columns:145px minmax(0,1fr);gap:25px;padding:0 0 20px;margin:0 0 20px;border-bottom:1px solid var(--border-color);font-size:15px;line-height:1.6}
+.resume-skill:last-child{margin-bottom:0}
+.resume-skill>span{font-weight:600;color:#333}
+.resume-skill strong{font-weight:400;color:#000}
+.resume-hobbies{display:flex;flex-wrap:wrap;gap:10px}
+.resume-hobbies span{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid #ddd;background:#fff;font-size:13px;color:#333;transition:border-color .25s ease,color .25s ease,transform .25s ease}
+.resume-hobbies span:hover{border-color:var(--primary-color);color:var(--primary-color);transform:translateY(-2px)}
+.resume-footer{margin-top:65px;padding-top:20px;border-top:1px solid #ddd;font-size:13px;color:#555;display:flex;justify-content:space-between;align-items:center}
+@media(max-width:900px){
+.site-header{height:72px}
+.navbar{height:72px;padding:0 20px}
+.logotype img{height:38px;max-width:160px}
+.resume-container{padding:120px 20px 70px}
+.resume-content{grid-template-columns:220px minmax(0,1fr);gap:40px}
+.resume-heading{margin-bottom:45px}
+.resume-heading h2{font-size:28px}
+.resume-item{grid-template-columns:120px minmax(0,1fr);gap:18px}
+.resume-skill{grid-template-columns:120px minmax(0,1fr);gap:18px}
+.resume-block-title h3{font-size:21px}
+}
+@media(max-width:700px){
+.site-header{height:65px}
+.navbar{height:65px;padding:0 15px}
+.logotype img{height:36px;max-width:150px}
+.back-link{font-size:12px}
+.resume-container{padding:105px 15px 60px}
+.resume-content{display:flex;flex-direction:column;gap:50px}
+.resume-profile{position:relative;top:auto;width:100%;max-width:320px;margin:0 auto}
+.resume-photo{aspect-ratio:4/5}
+.resume-heading{margin-bottom:40px}
+.resume-heading h2{font-size:25px}
+.resume-item{grid-template-columns:1fr;gap:5px}
+.resume-date{color:var(--primary-color);font-size:13px}
+.resume-skill{grid-template-columns:1fr;gap:5px}
+.resume-skill>span{color:var(--primary-color)}
+.resume-block{margin-bottom:40px}
+.resume-footer{flex-direction:column;align-items:flex-start;gap:8px}
+.security-box{padding:22px 17px 17px}
+.security-box h1{font-size:23px}
+.security-task{padding:14px}
+}
+@media(max-width:480px){
+.navbar{padding:0 12px}
+.logotype img{height:34px;max-width:140px}
+.back-link{font-size:11px}
+.resume-container{padding:95px 15px 55px}
+.resume-kicker{font-size:14px}
+.resume-heading h2{font-size:22px}
+.resume-heading p{font-size:14px}
+.resume-profile{max-width:280px}
+.resume-profile-name h3{font-size:20px}
+.resume-block-title{gap:12px}
+.resume-line{width:40px;flex-basis:40px;height:2px}
+.resume-block-title h3{font-size:19px}
+.resume-description{font-size:14px}
+.resume-skill{font-size:14px}
+.resume-hobbies{gap:8px}
+.resume-hobbies span{font-size:12px;padding:0 11px}
+.resume-footer{margin-top:50px}
+.security-logo{max-width:125px;height:40px;margin-bottom:14px}
+.security-home{gap:10px;font-size:13px}
+.security-home img{width:55px;height:55px}
+.security-actions{flex-direction:column}
+.security-button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.resume-block,.resume-profile{opacity:1;transform:none;transition:none}
+.resume-hobbies span,.security-item,.security-button{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="security-screen" role="dialog" aria-modal="true" aria-labelledby="security-title">
+<div class="security-box">
+<img src="partners/peteichuk.png" alt="Peteichuk" class="security-logo">
+<div class="security-icon"><i class="fa fa-shield"></i></div>
+<span class="security-kicker">Перевірка відвідувача</span>
+<h1 id="security-title">Коротка перевірка</h1>
+<p class="security-description">Виконайте невелике завдання, щоб відкрити резюме.</p>
+<div class="security-helper">
+<div class="security-helper-icon"><i class="fa fa-lightbulb-o"></i></div>
+<div class="security-helper-content">
+<span class="security-helper-title">Помічник</span>
+<span id="security-helper-text" class="security-helper-text">Натискайте літери в правильному порядку, щоб скласти слово.</span>
+</div>
+</div>
+<input type="text" id="website-field" class="security-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="security-task">
+<div id="security-question" class="security-question"></div>
+<div id="security-items" class="security-items"></div>
+<div id="security-answer" class="security-answer"></div>
+<div class="security-actions">
+<button type="button" id="security-check" class="security-button"><i class="fa fa-check"></i> Перевірити</button>
+<button type="button" id="security-reset" class="security-button secondary"><i class="fa fa-refresh"></i> Нове завдання</button>
+</div>
+<div id="security-status" class="security-status" aria-live="polite"></div>
+</div>
+<div id="security-progress" class="security-progress"><span id="security-progress-bar"></span></div>
+<a href="index.html" class="security-home">
+<img src="logotype/logotype.png" alt="">
+<span>На головну сторінку</span>
+</a>
+</div>
+</div>
+<div id="resume-root">
+<header class="site-header">
+<nav class="navbar">
+<a class="logotype" href="index.html" aria-label="На головну сторінку">
+<img src="partners/peteichuk.png" alt="Peteichuk">
+</a>
+<a class="back-link" href="index.html"><i class="fa fa-arrow-left"></i><span>На головну сторінку</span></a>
+</nav>
+</header>
+<section class="resume-section" id="resume">
+<div class="resume-container">
+<div class="resume-heading">
+<span class="resume-kicker">Резюме</span>
+<h2>Освіта, досвід та навички</h2>
+<p>Короткий огляд моєї освіти, практичного досвіду, знань, навичок та інтересів.</p>
+</div>
+<div class="resume-content">
+<div class="resume-profile">
+<div class="resume-photo"><img src="we/IMG_3572.png" alt="Василь Пейтейчук"></div>
+<div class="resume-profile-name">
+<h3>Василь Пейтейчук</h3>
+<div class="resume-location">
+<span><strong>Місцезнаходження:</strong> Мінден, Німеччина</span>
+<span><strong>Рідне місто:</strong> Іршава, Україна</span>
+</div>
+</div>
+<div class="resume-contact">
+<div class="resume-contact-item"><i class="fa fa-envelope"></i><a href="mailto:peteichukvasyl03@gmail.com">peteichukvasyl03@gmail.com</a></div>
+<div class="resume-contact-item"><i class="fa fa-phone"></i><a href="tel:+491622882068">+49 162 2882068</a></div>
+<div class="resume-contact-item"><i class="fa fa-phone"></i><a href="tel:+380978532820">+380 97 853 28 20</a></div>
+<div class="resume-contact-item"><i class="fa fa-globe"></i><a href="https://peteichukvasyl.github.io/" target="_blank" rel="noopener noreferrer">peteichukvasyl.github.io</a></div>
+</div>
+</div>
+<div class="resume-main">
+<div class="resume-block">
+<div class="resume-block-title"><span class="resume-line"></span><h3>Освіта</h3></div>
+<div class="resume-item">
+<div class="resume-date">08/2026 – дотепер</div>
+<div class="resume-description"><strong>Професійне навчання у Fach-Werk Minden e.V.</strong><span>Мінден, Німеччина</span></div>
+</div>
+<div class="resume-item">
+<div class="resume-date">09/2009 – 06/2020</div>
+<div class="resume-description"><strong>Загальноосвітня школа</strong><span>село Кушниця, Іршавський район, Україна</span></div>
+</div>
+</div>
+<div class="resume-block">
+<div class="resume-block-title"><span class="resume-line"></span><h3>Практичний досвід</h3></div>
+<div class="resume-item">
+<div class="resume-date">до 2021</div>
+<div class="resume-description"><strong>Підсобний працівник у будівельній сфері</strong><span>Допоміжні роботи під час виконання різних будівельних робіт</span></div>
+</div>
+<div class="resume-item">
+<div class="resume-date">2021 – 2022</div>
+<div class="resume-description"><strong>Працівник у будівельній сфері</strong><span>Робота з каменем, деревом та плиткою в Чехії</span></div>
+</div>
+</div>
+<div class="resume-block">
+<div class="resume-block-title"><span class="resume-line"></span><h3>Курси та сертифікати</h3></div>
+<div class="resume-item">
+<div class="resume-date">2026</div>
+<div class="resume-description"><strong>Курс німецької мови — рівень A2</strong><span>VHS Minden</span></div>
+</div>
+</div>
+<div class="resume-block">
+<div class="resume-block-title"><span class="resume-line"></span><h3>Знання та навички</h3></div>
+<div class="resume-skills">
+<div class="resume-skill"><span>Веброзробка</span><strong>HTML та CSS, базові знання JavaScript</strong></div>
+<div class="resume-skill"><span>Технічні навички</span><strong>Базові навички роботи з комп'ютером, вебтехнологіями та програмуванням</strong></div>
+<div class="resume-skill"><span>Мови</span><strong>Українська — рідна<br>Російська — вільне володіння<br>Німецька — рівень A2, підтверджений сертифікатом</strong></div>
+</div>
+</div>
+<div class="resume-block">
+<div class="resume-block-title"><span class="resume-line"></span><h3>Інтереси</h3></div>
+<div class="resume-hobbies">
+<span>Робота з технікою та виконання практичних робіт</span>
+<span>Силові тренування</span>
+<span>Програмування</span>
+</div>
+</div>
+</div>
+</div>
+<div class="resume-footer"><span>Мінден, 03.09.2026</span><span>Василь Пейтейчук</span></div>
+</div>
+</section>
+</div>
+<script>
+(()=>{
+"use strict";
+const screen=document.getElementById("security-screen");
+const resumeRoot=document.getElementById("resume-root");
+const question=document.getElementById("security-question");
+const itemsBox=document.getElementById("security-items");
+const answerBox=document.getElementById("security-answer");
+const checkButton=document.getElementById("security-check");
+const resetButton=document.getElementById("security-reset");
+const statusBox=document.getElementById("security-status");
+const progress=document.getElementById("security-progress");
+const progressBar=document.getElementById("security-progress-bar");
+const helperText=document.getElementById("security-helper-text");
+const honeypot=document.getElementById("website-field");
+const SESSION_KEY="vp_resume_human_verified_v3";
+const SESSION_TIME=30*60*1000;
+const MAX_ATTEMPTS=3;
+const MIN_TIME=900;
+const words=["MINDE","ARBEIT","BERUF","TECHNIK","WEB","HTML","CSS","CODE"];
+let currentChallenge=null;
+let challengeStartedAt=0;
+let attempts=0;
+function shuffle(array){
+const result=[...array];
+for(let i=result.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[result[i],result[j]]=[result[j],result[i]];
+}
+return result;
+}
+function setStatus(text,type=""){
+if(!text){
+statusBox.textContent="";
+statusBox.className="security-status";
+return;
+}
+statusBox.textContent=text;
+statusBox.className="security-status visible "+type;
+}
+function setHelper(text){helperText.textContent=text}
+function updateProgress(){
+if(!currentChallenge)return;
+const total=currentChallenge.answer.length;
+const selected=currentChallenge.selected.length;
+if(selected===0){
+progress.classList.remove("visible");
+progressBar.style.width="0%";
+return;
+}
+progress.classList.add("visible");
+const percent=Math.min(100,(selected/total)*100);
+progressBar.style.width=percent+"%";
+}
+function updateAnswerBox(){
+answerBox.innerHTML="";
+if(!currentChallenge.selected.length){
+answerBox.classList.remove("has-items");
+return;
+}
+answerBox.classList.add("has-items");
+currentChallenge.selected.forEach((value,index)=>{
+const button=document.createElement("button");
+button.type="button";
+button.className="security-answer-item";
+button.textContent=value;
+button.title="Натисніть, щоб прибрати";
+button.addEventListener("click",()=>{
+currentChallenge.selected.splice(index,1);
+renderItems();
+updateAnswerBox();
+updateProgress();
+setHelper(currentChallenge.selected.length?"Добре. Продовжуйте складати відповідь у правильному порядку.":"Натисніть першу потрібну літеру.");
+});
+answerBox.appendChild(button);
+});
+}
+function renderItems(items){
+itemsBox.innerHTML="";
+items.forEach((value,index)=>{
+const button=document.createElement("button");
+button.type="button";
+button.className="security-item";
+button.textContent=value;
+button.dataset.position=index;
+const alreadySelected=currentChallenge.selected.includes(value);
+if(alreadySelected)button.classList.add("selected");
+button.addEventListener("click",()=>{selectItem(button,value)});
+itemsBox.appendChild(button);
+});
+updateProgress();
+}
+function selectItem(button,value){
+if(!currentChallenge)return;
+if(currentChallenge.selected.length>=currentChallenge.answer.length){
+setHelper("Ви вже вибрали потрібну кількість елементів. Перевірте відповідь.");
+return;
+}
+const nextIndex=currentChallenge.selected.length;
+const expected=currentChallenge.answer[nextIndex];
+if(value===expected){
+currentChallenge.selected.push(value);
+button.classList.add("selected");
+updateAnswerBox();
+updateProgress();
+const completed=currentChallenge.selected.length===currentChallenge.answer.length;
+if(completed)setHelper("Готово. Усі елементи вибрано. Натисніть «Перевірити».");
+else setHelper("✓ Правильно. Тепер виберіть наступну літеру.");
+return;
+}
+setHelper("ℹ Ця літера зараз не потрібна. Спробуйте іншу.");
+button.animate([{transform:"translateX(0)"},{transform:"translateX(-4px)"},{transform:"translateX(4px)"},{transform:"translateX(0)"}],{duration:180});
+}
+function createChallenge(){
+attempts=0;
+setStatus("");
+answerBox.innerHTML="";
+answerBox.classList.remove("has-items");
+progress.classList.remove("visible");
+progressBar.style.width="0%";
+challengeStartedAt=Date.now();
+const word=words[Math.floor(Math.random()*words.length)];
+currentChallenge={answer:word.split(""),selected:[]};
+if(word==="WEB"||word==="CSS"){
+currentChallenge.answer=["1","2","3"];
+question.textContent="Розташуйте числа від найменшого до найбільшого.";
+renderItems(shuffle(["1","2","3"]));
+setHelper("Натискайте числа по черзі: спочатку найменше, потім наступне.");
+return;
+}
+question.textContent="Складіть слово, натискаючи літери у правильному порядку.";
+renderItems(shuffle(word.split("")));
+setHelper("Почніть із першої літери слова. Потім виберіть другу, третю і так далі.");
+}
+function verify(){
+if(honeypot.value.trim()!==""){
+setStatus("Перевірку не пройдено.","error");
+createChallenge();
+return;
+}
+const elapsed=Date.now()-challengeStartedAt;
+if(elapsed<MIN_TIME){
+setStatus("Спробуйте виконати завдання уважніше.","error");
+createChallenge();
+return;
+}
+if(!currentChallenge){
+createChallenge();
+return;
+}
+if(currentChallenge.selected.length!==currentChallenge.answer.length){
+setStatus("Спочатку виконайте завдання повністю.","error");
+setHelper("Потрібно вибрати всі елементи у правильному порядку.");
+return;
+}
+const selected=currentChallenge.selected.join("");
+const expected=currentChallenge.answer.join("");
+if(selected!==expected){
+attempts++;
+if(attempts>=MAX_ATTEMPTS){
+setStatus("Завдання оновлено. Спробуйте нове.","error");
+setHelper("Не хвилюйтеся. Натисніть «Нове завдання» і спробуйте ще раз.");
+setTimeout(createChallenge,600);
+return;
+}
+setStatus("Відповідь неправильна.","error");
+setHelper("Перевірте порядок літер і спробуйте ще раз.");
+return;
+}
+setStatus("✓ Перевірку успішно пройдено.","success");
+setHelper("Готово. Зараз відкриваємо резюме.");
+progress.classList.add("visible");
+progressBar.style.width="100%";
+try{sessionStorage.setItem(SESSION_KEY,String(Date.now()))}catch(error){}
+setTimeout(openResume,450);
+}
+function openResume(){
+screen.style.opacity="0";
+screen.style.transition="opacity .35s ease";
+setTimeout(()=>{
+screen.remove();
+resumeRoot.style.display="block";
+initializeResumeAnimations();
+},350);
+}
+function alreadyVerified(){
+try{
+const value=sessionStorage.getItem(SESSION_KEY);
+if(!value)return false;
+const timestamp=Number(value);
+if(!Number.isFinite(timestamp))return false;
+return Date.now()-timestamp<SESSION_TIME;
+}catch(error){return false}
+}
+function initializeResumeAnimations(){
+const elements=document.querySelectorAll(".resume-block,.resume-profile");
+if(!elements.length)return;
+if(!("IntersectionObserver" in window)){
+elements.forEach(element=>{element.classList.add("resume-visible")});
+return;
+}
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("resume-visible");
+observer.unobserve(entry.target);
+}
+});
+},{threshold:.12});
+elements.forEach(element=>{observer.observe(element)});
+}
+checkButton.addEventListener("click",verify);
+resetButton.addEventListener("click",createChallenge);
+document.addEventListener("keydown",event=>{
+if(event.key==="Enter"&&document.body.contains(screen))verify();
+});
+if(alreadyVerified()){
+screen.remove();
+resumeRoot.style.display="block";
+initializeResumeAnimations();
+}else createChallenge();
+})();
+</script>
+</body>
+</html>
